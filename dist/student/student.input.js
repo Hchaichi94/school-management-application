@@ -9,36 +9,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Lesson = void 0;
-const typeorm_1 = require("typeorm");
-let Lesson = class Lesson {
+exports.CreateStudentInput = void 0;
+const graphql_1 = require("@nestjs/graphql");
+const class_validator_1 = require("class-validator");
+let CreateStudentInput = class CreateStudentInput {
 };
 __decorate([
-    (0, typeorm_1.ObjectIdColumn)(),
+    (0, class_validator_1.MinLength)(1),
+    (0, graphql_1.Field)(),
     __metadata("design:type", String)
-], Lesson.prototype, "_id", void 0);
+], CreateStudentInput.prototype, "firstName", void 0);
 __decorate([
-    (0, typeorm_1.PrimaryColumn)(),
+    (0, class_validator_1.MinLength)(1),
+    (0, graphql_1.Field)(),
     __metadata("design:type", String)
-], Lesson.prototype, "id", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], Lesson.prototype, "name", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], Lesson.prototype, "startDate", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], Lesson.prototype, "endDate", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", Array)
-], Lesson.prototype, "students", void 0);
-Lesson = __decorate([
-    (0, typeorm_1.Entity)()
-], Lesson);
-exports.Lesson = Lesson;
-//# sourceMappingURL=lesson.entity.js.map
+], CreateStudentInput.prototype, "lastName", void 0);
+CreateStudentInput = __decorate([
+    (0, graphql_1.InputType)()
+], CreateStudentInput);
+exports.CreateStudentInput = CreateStudentInput;
+//# sourceMappingURL=student.input.js.map

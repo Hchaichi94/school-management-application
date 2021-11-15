@@ -14,39 +14,54 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.LessonResolver = void 0;
 const graphql_1 = require("@nestjs/graphql");
+const assign_students_to_lesson_input_1 = require("./assign-students-to-lesson.input");
+const lesson_input_1 = require("./lesson.input");
 const lesson_service_1 = require("./lesson.service");
 const lesson_type_1 = require("./lesson.type");
 let LessonResolver = class LessonResolver {
     constructor(lessonService) {
         this.lessonService = lessonService;
     }
-    lesson() {
-        return {
-            id: 'dsdfvsdfbgfbnh',
-            name: "akrem",
-            startDate: (new Date().toISOString()),
-            endDate: (new Date().toISOString()),
-        };
+    lesson(id) {
+        return this.lessonService.getLesson(id);
     }
-    createLesson(name, startDate, endDate) {
-        return this.lessonService.createLesson(name, startDate, endDate);
+    lessons() {
+        return this.lessonService.getAllLesson();
+    }
+    createLesson(createLessonInput) {
+        return this.lessonService.createLesson(createLessonInput);
+    }
+    assignStudentsToLesson(assignStudentsToLessonInput) {
+        return this.lessonService.assignStudentsToLesson(assignStudentsToLessonInput);
     }
 };
 __decorate([
     (0, graphql_1.Query)(returns => lesson_type_1.LessonType),
+    __param(0, (0, graphql_1.Args)('id')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], LessonResolver.prototype, "lesson", null);
 __decorate([
-    (0, graphql_1.Mutation)(returns => lesson_type_1.LessonType),
-    __param(0, (0, graphql_1.Args)('name')),
-    __param(1, (0, graphql_1.Args)('startDate')),
-    __param(2, (0, graphql_1.Args)('endDate')),
+    (0, graphql_1.Query)(returns => [lesson_type_1.LessonType]),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String, String]),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], LessonResolver.prototype, "lessons", null);
+__decorate([
+    (0, graphql_1.Mutation)(returns => lesson_type_1.LessonType),
+    __param(0, (0, graphql_1.Args)('createLessonInput')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [lesson_input_1.CreateLessonInput]),
     __metadata("design:returntype", void 0)
 ], LessonResolver.prototype, "createLesson", null);
+__decorate([
+    (0, graphql_1.Mutation)(returns => lesson_type_1.LessonType),
+    __param(0, (0, graphql_1.Args)('assignStudentsToLessonInput')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [assign_students_to_lesson_input_1.AssignStudentsToLessonInput]),
+    __metadata("design:returntype", void 0)
+], LessonResolver.prototype, "assignStudentsToLesson", null);
 LessonResolver = __decorate([
     (0, graphql_1.Resolver)(of => lesson_type_1.LessonType),
     __metadata("design:paramtypes", [lesson_service_1.LessonService])

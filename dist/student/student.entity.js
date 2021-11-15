@@ -9,36 +9,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Lesson = void 0;
+exports.Student = void 0;
 const typeorm_1 = require("typeorm");
-let Lesson = class Lesson {
+let Student = class Student {
 };
 __decorate([
     (0, typeorm_1.ObjectIdColumn)(),
     __metadata("design:type", String)
-], Lesson.prototype, "_id", void 0);
+], Student.prototype, "_id", void 0);
 __decorate([
     (0, typeorm_1.PrimaryColumn)(),
     __metadata("design:type", String)
-], Lesson.prototype, "id", void 0);
+], Student.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Lesson.prototype, "name", void 0);
+], Student.prototype, "firstName", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Lesson.prototype, "startDate", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], Lesson.prototype, "endDate", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", Array)
-], Lesson.prototype, "students", void 0);
-Lesson = __decorate([
+], Student.prototype, "lastName", void 0);
+Student = __decorate([
     (0, typeorm_1.Entity)()
-], Lesson);
-exports.Lesson = Lesson;
-//# sourceMappingURL=lesson.entity.js.map
+], Student);
+exports.Student = Student;
+//# sourceMappingURL=student.entity.js.map

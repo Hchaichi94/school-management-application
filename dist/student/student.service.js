@@ -12,44 +12,36 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LessonService = void 0;
+exports.StudentService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
-const lesson_entity_1 = require("./lesson.entity");
+const student_entity_1 = require("./student.entity");
 const uuid_1 = require("uuid");
-let LessonService = class LessonService {
-    constructor(lessonRepository) {
-        this.lessonRepository = lessonRepository;
+let StudentService = class StudentService {
+    constructor(studentRepository) {
+        this.studentRepository = studentRepository;
     }
-    async createLesson(createLessonInput) {
-        const { name, startDate, endDate, students } = createLessonInput;
-        const lesson = this.lessonRepository.create({
+    async createStudent(createStudentInput) {
+        const { firstName, lastName } = createStudentInput;
+        const student = this.studentRepository.create({
             id: (0, uuid_1.v4)(),
-            name,
-            startDate,
-            endDate,
-            students,
+            firstName,
+            lastName
         });
-        return this.lessonRepository.save(lesson);
+        return this.studentRepository.save(student);
     }
-    async getLesson(id) {
-        return this.lessonRepository.findOne({ id });
+    async getStudent(id) {
+        return this.studentRepository.findOne({ id });
     }
-    async getAllLesson() {
-        return this.lessonRepository.find();
-    }
-    async assignStudentsToLesson(assignStudentsToLessonInput) {
-        const { lessonId, studentsIds } = assignStudentsToLessonInput;
-        const lesson = await this.lessonRepository.findOne({ id: lessonId });
-        lesson.students = [...lesson.students, ...studentsIds];
-        return this.lessonRepository.save(lesson);
+    async getAllStudents() {
+        return this.studentRepository.find();
     }
 };
-LessonService = __decorate([
+StudentService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, typeorm_1.InjectRepository)(lesson_entity_1.Lesson)),
+    __param(0, (0, typeorm_1.InjectRepository)(student_entity_1.Student)),
     __metadata("design:paramtypes", [typeorm_2.Repository])
-], LessonService);
-exports.LessonService = LessonService;
-//# sourceMappingURL=lesson.service.js.map
+], StudentService);
+exports.StudentService = StudentService;
+//# sourceMappingURL=student.service.js.map

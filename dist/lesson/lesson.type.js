@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.LessonType = void 0;
 const graphql_1 = require("@nestjs/graphql");
+const student_type_1 = require("../student/student.type");
 let LessonType = class LessonType {
 };
 __decorate([
@@ -29,6 +30,10 @@ __decorate([
     (0, graphql_1.Field)(),
     __metadata("design:type", String)
 ], LessonType.prototype, "endDate", void 0);
+__decorate([
+    (0, graphql_1.Field)(type => [student_type_1.StudentType]),
+    __metadata("design:type", Array)
+], LessonType.prototype, "students", void 0);
 LessonType = __decorate([
     (0, graphql_1.ObjectType)('Lesson')
 ], LessonType);

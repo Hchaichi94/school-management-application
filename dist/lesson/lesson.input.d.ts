@@ -1,5 +1,4 @@
-export declare class LessonType {
-    id: string;
+export declare class CreateLessonInput {
     name: string;
     startDate: string;
     endDate: string;

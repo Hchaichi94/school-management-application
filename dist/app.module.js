@@ -12,6 +12,8 @@ const graphql_1 = require("@nestjs/graphql");
 const typeorm_1 = require("@nestjs/typeorm");
 const lesson_entity_1 = require("./lesson/lesson.entity");
 const lesson_module_1 = require("./lesson/lesson.module");
+const student_entity_1 = require("./student/student.entity");
+const student_module_1 = require("./student/student.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -22,12 +24,13 @@ AppModule = __decorate([
                 url: 'mongodb://localhost/school',
                 synchronize: true,
                 useUnifiedTopology: true,
-                entities: [lesson_entity_1.Lesson]
+                entities: [lesson_entity_1.Lesson, student_entity_1.Student],
             }),
             graphql_1.GraphQLModule.forRoot({
                 autoSchemaFile: true
             }),
-            lesson_module_1.LessonModule
+            lesson_module_1.LessonModule,
+            student_module_1.StudentModule
         ],
         controllers: [],
         providers: [],

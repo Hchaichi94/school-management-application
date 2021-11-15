@@ -4,4 +4,5 @@ export declare class Lesson {
     name: string;
     startDate: string;
     endDate: string;
+    students: string[];
 }
