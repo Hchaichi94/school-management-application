@@ -6,32 +6,21 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AppModule = void 0;
+exports.LessonModule = void 0;
 const common_1 = require("@nestjs/common");
-const graphql_1 = require("@nestjs/graphql");
 const typeorm_1 = require("@nestjs/typeorm");
-const lesson_entity_1 = require("./lesson/lesson.entity");
-const lesson_module_1 = require("./lesson/lesson.module");
-let AppModule = class AppModule {
+const lesson_entity_1 = require("./lesson.entity");
+const lesson_resolver_1 = require("./lesson.resolver");
+const lesson_service_1 = require("./lesson.service");
+let LessonModule = class LessonModule {
 };
-AppModule = __decorate([
+LessonModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            typeorm_1.TypeOrmModule.forRoot({
-                type: 'mongodb',
-                url: 'mongodb://localhost/school',
-                synchronize: true,
-                useUnifiedTopology: true,
-                entities: [lesson_entity_1.Lesson]
-            }),
-            graphql_1.GraphQLModule.forRoot({
-                autoSchemaFile: true
-            }),
-            lesson_module_1.LessonModule
+            typeorm_1.TypeOrmModule.forFeature([lesson_entity_1.Lesson]),
         ],
-        controllers: [],
-        providers: [],
+        providers: [lesson_resolver_1.LessonResolver, lesson_service_1.LessonService]
     })
-], AppModule);
-exports.AppModule = AppModule;
-//# sourceMappingURL=app.module.js.map
+], LessonModule);
+exports.LessonModule = LessonModule;
+//# sourceMappingURL=lesson.module.js.map
