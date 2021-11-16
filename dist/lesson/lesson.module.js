@@ -9,6 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.LessonModule = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
+const student_module_1 = require("../student/student.module");
 const lesson_entity_1 = require("./lesson.entity");
 const lesson_resolver_1 = require("./lesson.resolver");
 const lesson_service_1 = require("./lesson.service");
@@ -18,6 +19,7 @@ LessonModule = __decorate([
     (0, common_1.Module)({
         imports: [
             typeorm_1.TypeOrmModule.forFeature([lesson_entity_1.Lesson]),
+            student_module_1.StudentModule
         ],
         providers: [lesson_resolver_1.LessonResolver, lesson_service_1.LessonService]
     })

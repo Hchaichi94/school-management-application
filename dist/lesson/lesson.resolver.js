@@ -14,13 +14,16 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.LessonResolver = void 0;
 const graphql_1 = require("@nestjs/graphql");
+const student_service_1 = require("../student/student.service");
 const assign_students_to_lesson_input_1 = require("./assign-students-to-lesson.input");
+const lesson_entity_1 = require("./lesson.entity");
 const lesson_input_1 = require("./lesson.input");
 const lesson_service_1 = require("./lesson.service");
 const lesson_type_1 = require("./lesson.type");
 let LessonResolver = class LessonResolver {
-    constructor(lessonService) {
+    constructor(lessonService, studentService) {
         this.lessonService = lessonService;
+        this.studentService = studentService;
     }
     lesson(id) {
         return this.lessonService.getLesson(id);
@@ -33,6 +36,9 @@ let LessonResolver = class LessonResolver {
     }
     assignStudentsToLesson(assignStudentsToLessonInput) {
         return this.lessonService.assignStudentsToLesson(assignStudentsToLessonInput);
+    }
+    async students(lesson) {
+        return this.studentService.getManyStudents(lesson.students);
     }
 };
 __decorate([
@@ -62,9 +68,17 @@ __decorate([
     __metadata("design:paramtypes", [assign_students_to_lesson_input_1.AssignStudentsToLessonInput]),
     __metadata("design:returntype", void 0)
 ], LessonResolver.prototype, "assignStudentsToLesson", null);
+__decorate([
+    (0, graphql_1.ResolveField)(),
+    __param(0, (0, graphql_1.Parent)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [lesson_entity_1.Lesson]),
+    __metadata("design:returntype", Promise)
+], LessonResolver.prototype, "students", null);
 LessonResolver = __decorate([
     (0, graphql_1.Resolver)(of => lesson_type_1.LessonType),
-    __metadata("design:paramtypes", [lesson_service_1.LessonService])
+    __metadata("design:paramtypes", [lesson_service_1.LessonService,
+        student_service_1.StudentService])
 ], LessonResolver);
 exports.LessonResolver = LessonResolver;
 //# sourceMappingURL=lesson.resolver.js.map

@@ -1,11 +1,15 @@
+import { StudentService } from "../student/student.service";
 import { AssignStudentsToLessonInput } from "./assign-students-to-lesson.input";
+import { Lesson } from "./lesson.entity";
 import { CreateLessonInput } from "./lesson.input";
 import { LessonService } from "./lesson.service";
 export declare class LessonResolver {
     private lessonService;
-    constructor(lessonService: LessonService);
-    lesson(id: string): Promise<import("./lesson.entity").Lesson>;
-    lessons(): Promise<import("./lesson.entity").Lesson[]>;
-    createLesson(createLessonInput: CreateLessonInput): Promise<import("./lesson.entity").Lesson>;
-    assignStudentsToLesson(assignStudentsToLessonInput: AssignStudentsToLessonInput): Promise<import("./lesson.entity").Lesson>;
+    private studentService;
+    constructor(lessonService: LessonService, studentService: StudentService);
+    lesson(id: string): Promise<Lesson>;
+    lessons(): Promise<Lesson[]>;
+    createLesson(createLessonInput: CreateLessonInput): Promise<Lesson>;
+    assignStudentsToLesson(assignStudentsToLessonInput: AssignStudentsToLessonInput): Promise<Lesson>;
+    students(lesson: Lesson): Promise<import("../student/student.entity").Student[]>;
 }

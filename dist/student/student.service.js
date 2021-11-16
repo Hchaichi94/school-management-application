@@ -37,6 +37,15 @@ let StudentService = class StudentService {
     async getAllStudents() {
         return this.studentRepository.find();
     }
+    async getManyStudents(studentsIds) {
+        return this.studentRepository.find({
+            where: {
+                id: {
+                    $in: studentsIds
+                }
+            }
+        });
+    }
 };
 StudentService = __decorate([
     (0, common_1.Injectable)(),
